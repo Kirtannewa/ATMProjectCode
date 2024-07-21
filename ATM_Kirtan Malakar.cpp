@@ -54,10 +54,18 @@ int main()
 			case 2:
 				printf("\nWithdraw Amount: \n");
 				scanf("%d",&withdraw);
+				if(balance < withdraw)
+				{
+					printf("Insuffiecient funds");
+				}
+				else
+				{
 				withdrawn_balance = balance - withdraw;
 				balance = withdrawn_balance;
 				printf("\nAmount %d has been withdrawn from your account\n",withdraw);
 				printf("\nYour Total Balance is %d\n",withdrawn_balance);
+				}
+			
 				break;
 			case 3:
 				printf("How much you amount would you like to deposit: \n");
