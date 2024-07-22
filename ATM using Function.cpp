@@ -41,25 +41,27 @@ void balanceInquiry()
 {
     printf("\nYour Total Balance: %.2f\n", balance);
 }
-
-void withdrawMoney() 
+bool withdrawMoney()
 {
-    int withdraw;
+	int withdrawMoney, withdraw;
 	float withdrawn_balance;
-    printf("\nWithdraw Amount: ");
-    scanf("%d", &withdraw);
-    if (balance < withdraw)
+	printf("\nWithdraw Amount: ");
+	scanf("%d", &withdraw);
+	if(balance < withdraw)
 	{
-        printf("Insufficient funds\n");
-    } 
-	else 
+		printf("Insufficient Funds\n");
+		return false;
+	}
+	else
 	{
-    	withdrawn_balance = balance - withdraw;
-    	balance = withdrawn_balance;
-    	printf("\nAmount %d has been withdrawn from your account\n",withdraw);
-    	printf("\nYour Total Balance is %.2f\n",withdrawn_balance); 
-    }
+		withdrawn_balance = balance - withdraw;
+		balance = withdrawn_balance;
+		printf("\Amount %d has been withdrawn form your account\n",withdraw);
+		printf("\nYour Total Balance is %.2f\n",withdrawn_balance);
+		return true;
+	}
 }
+
 
 void depositMoney() 
 {
@@ -111,8 +113,11 @@ int main() {
                 balanceInquiry();
                 break;
             case 2:
-                withdrawMoney();
-                break;
+                if (balance < withdrawMoney())
+				{
+            	printf("Failed to withdraw money.\n");
+        		}
+        		break;
             case 3:
                 depositMoney();
                 break;
